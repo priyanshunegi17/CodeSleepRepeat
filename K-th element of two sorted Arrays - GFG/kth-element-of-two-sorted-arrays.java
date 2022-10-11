@@ -52,7 +52,7 @@ class Solution {
         int low = Math.max(0,k-m);
         int high = Math.min(n,k);
         while(low<=high){
-            int cut1 = (low+high)/2;
+            int cut1 = (low+high)/2; 
             int cut2 = k-cut1;
             
             int l1 = cut1==0?Integer.MIN_VALUE:arr1[cut1-1];
@@ -70,6 +70,7 @@ class Solution {
             else{
                 low = cut1+1;
             }
+            
         }
         return 1;
     }
