@@ -34,27 +34,37 @@ class GFG
 
 // } Driver Code Ends
 
-// code with Alisha
+// code with Alisha...
 
 class Solution
 {
     public int[][] overlappedInterval(int[][] Intervals)
     {
+        // create the arraylist to store resultant pairs...
         ArrayList<int[]> res = new ArrayList<>();
         
+        // sort the intervals by comparing first index of each pair..
         Arrays.sort(Intervals,(a,b)->a[0]-b[0]);
         
+        //number of rows in the Intervals..
         int n = Intervals.length;
+        
         if(n<=1){
             return Intervals;
         }
+        // create a row and store first pair...
         int row[] = Intervals[0];
+        // add into result...
         res.add(row);
         
+        // loop through pairs..
         for(int[] interval:Intervals){
+            // if element 0'th index of current interval is less then element at 1'st index of previous pair,
+            // then change the value of previous pair's 1st index
             if(interval[0]<=row[1]){
                 row[1]=Math.max(interval[1],row[1]);
             }
+            // otherwise store the current pair in the res...
             else{
                 row = interval;
                 res.add(row);
