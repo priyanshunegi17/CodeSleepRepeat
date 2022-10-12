@@ -47,12 +47,12 @@ class Solution {
         
         Arrays.sort(res);
         int med=0;
-        if((n&1)!=1){
-            med = (res[n/2]+res[(n+1)/2])/2;
-        }
-        else{
+        // if((n&1)!=1){
+        //     med = (res[n/2]+res[(n+1)/2])/2;
+        // }
+        // else{
             med = res[n/2];
-        }
+        // }
         
         return med;
     }
