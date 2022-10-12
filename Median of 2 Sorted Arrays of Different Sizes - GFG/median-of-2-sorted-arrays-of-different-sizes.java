@@ -31,7 +31,8 @@ class Driver
 // } Driver Code Ends
 
 
-//User function Template for Java
+//https://practice.geeksforgeeks.org/problems/median-of-2-sorted-arrays-of-different-sizes/1
+// check striver's video.. similar to kth element of two sorted array..
 
 class GFG 
 { 
