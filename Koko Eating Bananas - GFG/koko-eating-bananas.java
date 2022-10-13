@@ -48,9 +48,8 @@ class Solution {
         int min=Integer.MAX_VALUE;
         int low=1,high=last;
         while(low<=high){
-            int mid = (low+high)/2;
+            int mid = (low+high)>>1;
             int val = calcTime(piles,mid);
-            // min = val<mid?val:mid;
             if(val<=H){
                 min = mid;
                 high=mid-1;
