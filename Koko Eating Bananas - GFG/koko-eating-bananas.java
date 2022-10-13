@@ -23,50 +23,35 @@ class GFG {
 
 // } Driver Code Ends
 
-// https://practice.geeksforgeeks.org/problems/koko-eating-bananas/1
-// Code with Alisha...
 
 class Solution {
     
-    // for a given speed, calculate how much time it'll take to eat all the bananas...
-    static int calcTime(int[] piles,int speed){
-        int n = piles.length;
-        int count=0;
-        // we have to take the ceiling values... i.e 7(bananas)/5(speed) should give 2.. not 1.. that's why
-        for(int i=0;i<n;i++){
-            count+=(int)Math.ceil(piles[i]/(double)speed);
+    static int calcTime(int piles[],int speed){
+        int time=0;
+        for(int i=0;i<piles.length;i++){
+            time+=(piles[i]/speed)+((piles[i]%speed)!=0?1:0);
         }
-        return count;
+        return time;
     }
     
     public static int Solve(int N, int[] piles, int H) {
-        
-        // sort the array... 
         Arrays.sort(piles);
-        int last = piles[N-1];
-        // if array size is equals to the Hours.. then return the max element present in array..
-        if(N==H){
-            return last;
-        }
+        int low = 1, high =piles[N-1];
         
-        // initialize the values... 
-        int min=0;
-        int low=1,high=last;
+        int ans=0;
         while(low<=high){
-            int mid = (low+high)>>1;
-            // calculate time required with given speed..
+            int mid = (low+high)/2;
             int time = calcTime(piles,mid);
-            // if time is less then equals to hours.. it could be potential candidate for the answer..
-            // **potential... so it's not fix.. keep updating it..
+            // System.out.println(mid+" "+time);
             if(time<=H){
-                min = mid;
+                ans=mid;
                 high=mid-1;
             }
             else{
                 low=mid+1;
             }
         }
-        return min;
+        return ans;
     }
 }
         
