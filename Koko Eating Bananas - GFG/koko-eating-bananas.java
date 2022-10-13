@@ -28,9 +28,11 @@ class GFG {
 
 class Solution {
     
+    // for a given speed, calculate how much time it'll take to eat all the bananas...
     static int calcTime(int[] piles,int speed){
         int n = piles.length;
         int count=0;
+        // we have to take the ceiling values... i.e 7(bananas)/5(speed) should give 2.. not 1.. that's why
         for(int i=0;i<n;i++){
             count+=(int)Math.ceil(piles[i]/(double)speed);
         }
@@ -42,15 +44,21 @@ class Solution {
         // sort the array... 
         Arrays.sort(piles);
         int last = piles[N-1];
+        // if array size is equals to the Hours.. then return the max element present in array..
         if(N==H){
             return last;
         }
-        int min=Integer.MAX_VALUE;
+        
+        // initialize the values... 
+        int min=0;
         int low=1,high=last;
         while(low<=high){
             int mid = (low+high)>>1;
-            int val = calcTime(piles,mid);
-            if(val<=H){
+            // calculate time required with given speed..
+            int time = calcTime(piles,mid);
+            // if time is less then equals to hours.. it could be potential candidate for the answer..
+            // **potential... so it's not fix.. keep updating it..
+            if(time<=H){
                 min = mid;
                 high=mid-1;
             }
