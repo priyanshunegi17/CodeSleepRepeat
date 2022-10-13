@@ -26,25 +26,29 @@ this function*/
 // x: element to find square root
 class Solution
 {
-    
+    // function to return square of given number...
     long square(long n){
         return n*n;
     }
     
      long floorSqrt(long x)
 	 {
+	    // search space is from 1 to x..
 		long low=1,high=x;
 		long ans=0;
 		while(low<=high){
 		    long mid=(low+high)/2;
 		    long sq =square(mid);
+		    // if it's a perfect square...
 		    if(sq==x){
 		        ans=mid;
 		        return ans;
 		    }
+		    // if squre is more then the given x.. searh in the left half...
 		    if(sq>x){
 		        high=mid-1;
 		    }
+		    // search in right half...
 		    else{
 		        ans=mid;
 		        low=mid+1;
