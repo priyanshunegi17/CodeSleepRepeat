@@ -30,22 +30,24 @@ class GFG {
 
 class Solution {
     
-    static boolean calcDays(int[] arr,int d,int mid){
+    static boolean calcDays(int[] arr,int D,int mid){
         int n = arr.length;
+        
         int days=1,sum=0;
         for(int i=0;i<n;i++){
             if(sum+arr[i]<=mid){
                 sum+=arr[i];
             }
             else{
-                sum=arr[i];
                 days++;
+                sum=arr[i];
             }
         }
-        if(days<=d){
+        if(days<=D){
             return true;
         }
         return false;
+        
     }
     
     static int leastWeightCapacity(int[] arr, int N, int D) {
@@ -55,14 +57,14 @@ class Solution {
             max=arr[i]>max?arr[i]:max;
         }
         
-        int low= max, high = sum;
+        int low = max, high = sum;
         int ans=0;
         while(low<=high){
             int mid = (low+high)/2;
             
             if(calcDays(arr,D,mid)){
-                  ans=mid;
-                  high=mid-1;
+                ans=mid;
+                high=mid-1;
             }
             else{
                 low=mid+1;
@@ -71,3 +73,17 @@ class Solution {
         return ans;
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
