@@ -10,34 +10,43 @@ import java.util.*;
 
 
 // } Driver Code Ends
-//User function Template for Java
 
-//User function Template for Java
 
-            
+//  https://practice.geeksforgeeks.org/problems/k-th-missing-element3635/1
 
 class Complete{
     
-  
-    int KthMissingElement(int a[], int n, int k)
+    int KthMissingElement(int arr[], int n, int k)
     {
-        int sum=0;
+        int actualSum=0;
+        // calculate the sum of all elements of array...
         for(int i=0;i<n;i++){
-            sum+=a[i];
+            actualSum+=arr[i];
         }
-        int mac = a[n-1];
-        int act = (mac*(mac+1))/2;
-        if(sum==act){
+        // max element present in the array..
+        int mac = arr[n-1];
+        // calculate the actual sum from 1 to max element..
+        int sum = (mac*(mac+1))/2;
+        // if calculated sum is equal to actual Sum, it means no element is missing..
+        if(sum==actualSum){
             return -1;
         }
+        
+        // c counter will be used to keep track of missing numbers...
+        // if it reaches k, then we'll return that number...
         int c=0;
-        int b=a[0];
+        // so the number will start from 1st value present in the array..
+        int b=arr[0];
         for(int i=0;i<n;i++){
-            if(a[i]!=b){
+            // if values are not equal, means the elment is missing...
+            if(arr[i]!=b){
+                // increment missing counter by 1
                 c++;
+                // if it becomes equal to k, simply return it...
                 if(c==k){
                     return b;
                 }
+                // if something is missing, we should avoid incrementing i(which is increasing by 1 default)
                 i--;
                 b++;
             }
@@ -47,8 +56,6 @@ class Complete{
         }
         return -1;
     }
-  
-    
 }
 
 
