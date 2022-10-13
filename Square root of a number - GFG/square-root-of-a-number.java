@@ -26,13 +26,30 @@ this function*/
 // x: element to find square root
 class Solution
 {
+    
+    long square(long n){
+        return n*n;
+    }
+    
      long floorSqrt(long x)
 	 {
-	     long res = 0;
-		for(long i=0;i*i<=x;i++){
-		    res=i;
+		long low=1,high=x;
+		long ans=0;
+		while(low<=high){
+		    long mid=(low+high)/2;
+		    long sq =square(mid);
+		    if(sq==x){
+		        ans=mid;
+		        return ans;
+		    }
+		    if(sq>x){
+		        high=mid-1;
+		    }
+		    else{
+		        ans=mid;
+		        low=mid+1;
+		    }
 		}
-		
-		return res;
+		return ans;
 	 }
 }
