@@ -1,6 +1,3 @@
-// https://leetcode.com/problems/find-a-peak-element-ii/submissions/
-// striver...
-
 class Solution {
     public int[] findPeakGrid(int[][] mat) {
         int row = mat.length;
