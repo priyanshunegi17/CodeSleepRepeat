@@ -1,57 +1,26 @@
 class Solution {
     public int[] findPeakGrid(int[][] mat) {
-        int row = mat.length;
-        int col = mat[0].length;
+        int row=mat.length,col=mat[0].length;
         
-        int ans[]=new int[2];
-        
-        int n = row*col;
-        
-        int low=0,high=n-1;
+        int low=0,high=col-1;
         while(low<=high){
-            int mid = (low+high)/2;
-            int check=1;
-            //i-> row & j-> col
-            int i=mid/col;
-            int j=mid%col;
-            int element = mat[i][j];
-                // check top
-                if(i!=0){
-                    if(!(mat[i][j]>mat[i-1][j])){
-                        check=0;
-                    }
-                }                
-                // check bottom
-                if(i!=row-1){
-                    if(!(mat[i][j]>mat[i+1][j])){
-                        check=0;
-                    }
-                }                
-                // check left
-                if(j!=0){
-                    if(!(mat[i][j]>mat[i][j-1])){
-                        check=0;
-                    }
-                }                
-                // check right
-                if(j!=col-1){
-                    if(!(mat[i][j]>mat[i][j+1])){
-                        check=0;
-                    }
-                }
-                
-                if(check==1){
-                    ans[0]=i;
-                    ans[1]=j;
-                    return ans;
-                }
-                else{
-                    low=low+1;
-                }
-            
+            int mid=(low+high)/2;
+            int maxRow=0;
+            for(int i=0;i<row;i++){
+                maxRow=mat[i][mid]>mat[maxRow][mid]?i:maxRow;
+            }
+            boolean isLeftBig = mid-1>=low && mat[maxRow][mid-1]>mat[maxRow][mid];
+            boolean isRightBig = mid+1<=high && mat[maxRow][mid+1]>mat[maxRow][mid];
+            if(!isLeftBig && !isRightBig){
+                return new int[]{maxRow,mid};   
+            }
+            if(isLeftBig){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
         }
-        
-        
-        return ans;
+        return null;
     }
 }
