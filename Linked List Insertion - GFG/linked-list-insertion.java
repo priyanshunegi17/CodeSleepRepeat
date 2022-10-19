@@ -46,7 +46,7 @@ class GFG{
 
 // } Driver Code Ends
 
-
+// https://practice.geeksforgeeks.org/problems/linked-list-insertion-1587115620/0
 /*
 class Node{
     int data;
@@ -63,7 +63,9 @@ class Solution
     //Function to insert a node at the beginning of the linked list.
     Node insertAtBeginning(Node head, int x)
     {
+        // create the new node with data 'x'
         Node newNode = new Node(x);
+        // check if linkedList is empty or not...
         if(head!=null){
             newNode.next=head;
             head=newNode;
@@ -72,14 +74,13 @@ class Solution
             head=newNode;
         }
             return head;
-        
-
     }
     
     //Function to insert a node at the end of the linked list.
     Node insertAtEnd(Node head, int x)
     {
         Node newNode = new Node(x);
+        // if head is null we'll simply return the newNode as a head...
         if(head!=null){
             Node check=head;
             while(check.next!=null){
