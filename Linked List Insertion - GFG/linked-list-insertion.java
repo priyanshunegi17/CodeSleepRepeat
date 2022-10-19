@@ -80,15 +80,16 @@ class Solution
     Node insertAtEnd(Node head, int x)
     {
         Node newNode = new Node(x);
-        if(head==null){
+        if(head!=null){
+            Node check=head;
+            while(check.next!=null){
+                check=check.next;
+            }
+            check.next=newNode;
+        }
+        else{
             head=newNode;
-            return head;
         }
-        Node check=head;
-        while(check.next!=null){
-            check=check.next;
-        }
-        check.next=newNode;
         return head;
     }
 }
