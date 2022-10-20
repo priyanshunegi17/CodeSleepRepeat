@@ -104,14 +104,17 @@ class Solution
 	    else{
 	        Node check=head;
 	        int i=1;
+	        // traverse upto position x..
 	        while(i!=x){
 	            check=check.next;
 	            i++;
 	        }
+	        // if the last node has to be deleted...
 	        if(check.next==null){
 	            check.prev.next=null;
 	            check.prev=null;
 	        }
+	        // if the node to be deleted is somewhere in middle...
 	        else{
 	            check.next.prev=check.prev;
 	            check.prev.next=check.next;
