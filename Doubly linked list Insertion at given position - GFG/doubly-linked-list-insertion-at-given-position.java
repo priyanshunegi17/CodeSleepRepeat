@@ -89,7 +89,7 @@ class DLinkedList
 }
 // } Driver Code Ends
 
-
+// https://practice.geeksforgeeks.org/problems/insert-a-node-in-doubly-linked-list/1
 /* Structure of Doubly Linked List
 class Node
 {
@@ -105,16 +105,15 @@ class Node
 
 class GfG
 {
-    //Function to insert a new node at given position in doubly linked list.
     void addNode(Node head_ref, int pos, int data)
 	{
 	    Node newNode = new Node(data);
-        if(pos==-1){
-            newNode.next=head_ref;
-            head_ref.prev=newNode;
-            head_ref=newNode;
-        }		
-        else{
+        // if(pos==-1){
+        //     newNode.next=head_ref;
+        //     head_ref.prev=newNode;
+        //     head_ref=newNode;
+        // }		
+        // else{
             Node check = head_ref;
             int i=0;
             while(i!=pos){
@@ -131,7 +130,7 @@ class GfG
                 newNode.prev=check;
                 check.next=newNode;
             }
-        }
+        // }
 	}
 }
 
