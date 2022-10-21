@@ -76,12 +76,19 @@ class Node
 
 */
 
-
+// we'll use slow and fast pointer...
+// slow will move 1 position at a time...
+// fast will move 2 position at a time...
+// if they become equal.. it means the linked list is having a loop
+// if they become null, it means there is no loop and we reached the end of the linked list.
 class Solution {
     public static boolean detectLoop(Node head){
         Node fast=head.next;
         Node slow=head;
+        // keep traversing until they reaches to end...
         while(fast!=null && fast.next!=null){
+            // in case of loop.. at once they'll collide... so check for that scenario..    
+            // if they becomes equal then it means there is a loop in the linked list
             if(slow==fast){
                 return true;
             }
@@ -89,12 +96,5 @@ class Solution {
             fast=fast.next.next;
         }
         return false;
-        // if(fast==null || fast.next==null){
-            // return false;
-        // }
-        // return true;
-        
-        
-        
     }
 }
