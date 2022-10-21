@@ -58,22 +58,22 @@ class Solution
 {
     int getMiddle(Node head)
     {
-        Node check = head;
-        int count=0;
-        while(check!=null){
-            count++;
-            check=check.next;
-        }
-        int k=0;
-        k=(count/2)+1;
-        int i=1;
-        while(head!=null){
-            if(i==k){
-                return head.data;
-            }
-            i++;
-            head=head.next;
-        }
+         int count=0;
+         Node check = head;
+         while(check!=null){
+             count++;
+             check=check.next;
+         }
+         int req = (count/2)+1;
+         
+         int i=1;
+         while(head!=null){
+             if(i==req){
+                 return head.data;
+             }
+             i++;
+                head=head.next;    
+         }
         return -1;
     }
 }
