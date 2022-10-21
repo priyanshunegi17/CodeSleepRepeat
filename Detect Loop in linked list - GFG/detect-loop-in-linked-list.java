@@ -63,7 +63,7 @@ class GFG
 // } Driver Code Ends
 
 
-//User function template for JAVA
+//https://practice.geeksforgeeks.org/problems/detect-loop-in-linked-list/1
 
 /* Node is defined as
 
@@ -78,7 +78,6 @@ class Node
 
 
 class Solution {
-    //Function to check if the linked list has a loop.
     public static boolean detectLoop(Node head){
         Node fast=head.next;
         Node slow=head;
@@ -89,10 +88,11 @@ class Solution {
             slow=slow.next;
             fast=fast.next.next;
         }
-        if(fast==null || fast.next==null){
-            return false;
-        }
-        return true;
+        return false;
+        // if(fast==null || fast.next==null){
+            // return false;
+        // }
+        // return true;
         
         
         
