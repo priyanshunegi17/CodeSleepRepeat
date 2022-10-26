@@ -103,30 +103,28 @@ class Solution{
             int sum=0,val=0;
             if(head1!=null && head2!=null){
                 sum=head1.data+head2.data+carry;
-                val=sum%10;
-                carry=sum/10;
-                // System.out.println(head1.data+" "+head2.data);
+                // val=sum%10;
+                // carry=sum/10;
                 head1=head1.next;
                 head2=head2.next;
             }
             else if(head1==null){
-                // System.out.println("null "+head2.data);
                 sum=head2.data+carry;
-                val=sum%10;
-                carry=sum/10;
+                // val=sum%10;
+                // carry=sum/10;
                 head2=head2.next;
             }
             else{
-                // System.out.println(head1.data+"null ");
                 sum=head1.data+carry;
-                val=sum%10;
-                carry=sum/10;
+                // val=sum%10;
+                // carry=sum/10;
                 head1=head1.next;
             }
+                val=sum%10;
+                carry=sum/10;
                 newNode = new Node(val);
                 curr.next=newNode;
                 curr=curr.next;
-                // System.out.print(val+"+");
         }
         if(carry>0){
             newNode= new Node(carry);
