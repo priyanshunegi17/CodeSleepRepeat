@@ -103,11 +103,12 @@ class Solution
     boolean isPalindrome(Node head) 
     {
         ArrayList<Integer> list = new ArrayList<>();
-        while(head!=null){
-            list.add(head.data);
-            head=head.next;
+        Node check=head;
+        while(check!=null){
+            list.add(check.data);
+            check=check.next;
         }
-        int n = list.size();
+        int n =list.size();
         for(int i=0,j=n-1;i<j;i++,j--){
             if(list.get(i)!=list.get(j)){
                 return false;
