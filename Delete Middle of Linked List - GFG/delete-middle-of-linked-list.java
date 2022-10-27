@@ -45,7 +45,7 @@ class GFG{
 
 // } Driver Code Ends
 
-// https://practice.geeksforgeeks.org/problems/delete-middle-of-linked-list/1
+
 /*
 class Node {
     int data;
@@ -53,38 +53,19 @@ class Node {
     Node(int d)  { data = d;  next = null; }
 }
 */
-// first find the position of the mid element....
-// once we got the position, then we just need to traverse upto that position and delete
-// the node at "curr" position...
+
 class Solution {
     Node deleteMid(Node head) {
-      Node check = head;
-      int count=0;
-      // count the elements..
-      while(check!=null){
-          count++;
-          check=check.next;
-      }
-      // get the mid position...
-      int k=(count/2)+1;
-      
-      int i=1;
-      
-      Node prev=null;
-      Node curr=head;
-      while(i!=k){
-          prev=curr;
-          curr=curr.next;
-          i++;
-      }
-    prev.next=curr.next;
-    curr.next=null;
-      
-      return head;
+        Node slow=head;
+        Node fast=head;
+        Node prev=null;
+        while(fast!=null && fast.next!=null){
+            prev=slow;
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        prev.next=slow.next;
+        slow.next=null;
+        return head;
     }
 }
-
-
-
-
-
