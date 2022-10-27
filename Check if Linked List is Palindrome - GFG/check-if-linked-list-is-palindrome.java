@@ -99,23 +99,42 @@ class Node
 
 class Solution
 {
-    //Function to check whether the list is palindrome.
+    Node reverse(Node head){
+        if(head==null || head.next==null){
+            return head;
+        }
+        Node newHead= reverse(head.next);
+        head.next.next=head;
+        head.next=null;
+        return newHead;
+    }
+    
     boolean isPalindrome(Node head) 
     {
-        ArrayList<Integer> list = new ArrayList<>();
-        Node check=head;
-        while(check!=null){
-            list.add(check.data);
-            check=check.next;
+        Node slow=head;
+        Node fast=head;
+        if(head.next==null){
+            return true;
         }
-        int n =list.size();
-        for(int i=0,j=n-1;i<j;i++,j--){
-            if(list.get(i)!=list.get(j)){
+        else if(head.next.next==null){
+            return head.data==head.next.data;
+        }
+        while(fast.next!=null && fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        // System.out.println(slow.data);
+        slow.next=reverse(slow.next);
+        slow=slow.next;
+        Node check=head;
+        while(slow!=null){
+            if(check.data!=slow.data){
                 return false;
             }
+            slow=slow.next;
+            check=check.next;
         }
         return true;
-        
         
     }    
 }
