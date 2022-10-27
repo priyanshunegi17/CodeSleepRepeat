@@ -57,7 +57,7 @@ class Node{
     }
 } 
 */
-
+// https://practice.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1
 class Solution
 {
     public static Node reverse(Node head){
@@ -72,23 +72,24 @@ class Solution
     
     public static Node addOne(Node head) 
     { 
-        head =reverse(head);
-        Node check = head;
+        head=reverse(head);
+        Node check=head;
         Node prev=null;
         int carry=1;
         while(check!=null){
-            int sum= check.data+carry;
-            check.data = sum%10;
+            int sum=check.data+carry;
+            int val=sum%10;
+            // System.out.println(check.data+" "+sum+" "+val);
             carry=sum/10;
+            check.data=val;
             prev=check;
             check=check.next;
         }
         Node newNode=null;
         if(carry>0){
-            newNode = new Node(carry);
+            newNode=new Node(carry);
             prev.next=newNode;
         }
-        
         return reverse(head);
     }
 }
