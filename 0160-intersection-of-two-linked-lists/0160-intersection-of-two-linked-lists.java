@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/intersection-of-two-linked-lists/submissions/
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -9,6 +10,11 @@
  *     }
  * }
  */
+// approch: codeWithAlisha / TakeUForward
+// start traversing from the head of both linkedlist. 
+// if any pointer reaches to the null. move that pointer to the head of other linked list.
+// in this way, both the pointers will meet at once.. and return that node.
+// if any of the pointer again reaches null. it means there is no intersection. so return null
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode check1=headA;
