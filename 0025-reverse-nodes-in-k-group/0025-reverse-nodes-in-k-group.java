@@ -9,13 +9,6 @@
  * }
  */
 class Solution {
-    void print(ListNode head){
-        while(head!=null){
-            System.out.print(head.val+" ");
-            head=head.next;
-        }
-        System.out.println();
-    }
     ListNode reverse(ListNode head,ListNode end){
         if(head==end || head.next==null){
             return head;
@@ -37,20 +30,8 @@ class Solution {
             if(i%k==0){
                 ListNode ref=check.next;
                 right=check;
-                System.out.println(left.val+" "+right.val);
-                // curr.next=reverse(left,right);
-                ListNode revHead=reverse(left,right);
-                curr.next=revHead;
+                curr.next=reverse(left,right);
                 curr=left;
-                // System.out.println(right.next.val+" this ");
-                // curr=right;
-                // print(reverse(left,right));
-                // ListNode cnt = revHead;
-                // while(cnt.next!=null){
-                    // cnt=cnt.next;
-                // }
-                // cnt.next=ceck.next;
-                // System.out.println("checkdata+"+ref.val);
                 left.next=ref;
                 check=left;
                 left=left.next;
@@ -58,9 +39,7 @@ class Solution {
             check=check.next;
             i++;
         }
-        // print(reverse(head,head.next));
         return newHead.next;
-        // return head;
     }
     
     
