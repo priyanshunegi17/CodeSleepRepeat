@@ -103,7 +103,7 @@ class Solution
         if(head==null || head.next==null){
             return head;
         }
-        Node newHead= reverse(head.next);
+        Node newHead=reverse(head.next);
         head.next.next=head;
         head.next=null;
         return newHead;
@@ -113,29 +113,32 @@ class Solution
     {
         Node slow=head;
         Node fast=head;
-        if(head.next==null){
-            return true;
-        }
-        else if(head.next.next==null){
-            return head.data==head.next.data;
-        }
         while(fast.next!=null && fast.next.next!=null){
             slow=slow.next;
             fast=fast.next.next;
+            
         }
-        // System.out.println(slow.data);
-        slow.next=reverse(slow.next);
-        slow=slow.next;
-        Node check=head;
+        slow=reverse(slow.next);
+        fast=head;
         while(slow!=null){
-            if(check.data!=slow.data){
+            if(slow.data!=fast.data){
                 return false;
             }
             slow=slow.next;
-            check=check.next;
+            fast=fast.next;
         }
         return true;
-        
     }    
 }
+
+
+
+
+
+
+
+
+
+
+
 
