@@ -19,19 +19,18 @@ public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode check1=headA;
         ListNode check2=headB;
-        Boolean once=false;
         while(check1!=check2){
-            check1=check1.next;
-            check2=check2.next;
             if(check1==null){
-                if(once){
-                    return null;
-                }
                 check1=headB;
-                once=true;
+            }
+            else{
+                check1=check1.next;
             }
             if(check2==null){
                 check2=headA;
+            }
+            else{
+                check2=check2.next;
             }
         }
         return check1;
