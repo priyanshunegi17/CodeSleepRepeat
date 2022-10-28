@@ -62,6 +62,7 @@ class GfG{
 
 // } Driver Code Ends
 
+// https://practice.geeksforgeeks.org/problems/add-two-numbers-represented-by-linked-lists/1
 
 /* node for linked list
 
@@ -90,47 +91,42 @@ class Solution{
     }
     
     static Node addTwoLists(Node first, Node second){
-        Node head1=first;
-        Node head2 =second;
-        head1= reverse(head1);
-        head2= reverse(head2);
-        int carry=0;
-        Node head = new Node(0);
-        Node curr=head;
-        
-        Node newNode = null;
-        while(head1!=null || head2!=null){
-            int sum=0,val=0;
-            if(head1!=null && head2!=null){
-                sum=head1.data+head2.data+carry;
-                // val=sum%10;
-                // carry=sum/10;
-                head1=head1.next;
-                head2=head2.next;
-            }
-            else if(head1==null){
-                sum=head2.data+carry;
-                // val=sum%10;
-                // carry=sum/10;
-                head2=head2.next;
-            }
-            else{
-                sum=head1.data+carry;
-                // val=sum%10;
-                // carry=sum/10;
-                head1=head1.next;
-            }
+       Node head1=reverse(first);
+       Node head2=reverse(second);
+       Node check1=head1;
+       Node check2=head2;
+       int carry=0;
+       int sum=0;
+       int val=0;
+       
+       Node head=new Node(-1);
+       Node check=head;
+    //   Node newNode=null;
+       while(check1!=null || check2!=null){
+           if(check1!=null && check2!=null){
+               sum=check1.data+check2.data+carry;
+               check1=check1.next;
+               check2=check2.next;
+           }
+           else if(check1==null){
+               sum=check2.data+carry;
+               check2=check2.next;
+           }
+           else if(check2==null){
+               sum=check1.data+carry;
+               check1=check1.next;
+           }
                 val=sum%10;
-                carry=sum/10;
-                newNode = new Node(val);
-                curr.next=newNode;
-                curr=curr.next;
-        }
-        if(carry>0){
-            newNode= new Node(carry);
-            curr.next=newNode;
-        }
-        return reverse(head.next);
+               carry=sum/10;
+               Node newNode=new Node(val);
+                check.next=newNode;
+                check=check.next;
+       }
+       if(carry>0){
+           Node newNode=new Node(carry);
+           check.next=newNode;
+       }
+       return reverse(head.next);
     }
 }
 
