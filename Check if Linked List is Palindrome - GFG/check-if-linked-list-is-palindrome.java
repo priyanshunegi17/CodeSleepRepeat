@@ -113,19 +113,25 @@ class Solution
     {
         Node slow=head;
         Node fast=head;
+        // if(head.next==null){
+        //     return true;
+        // }
+        // else if(head.next.next==null){
+        //     return head.data==head.next.data;
+        // }
         while(fast.next!=null && fast.next.next!=null){
             slow=slow.next;
             fast=fast.next.next;
-            
         }
-        slow=reverse(slow.next);
-        fast=head;
+        slow.next=reverse(slow.next);
+        slow=slow.next;
+        Node check=head;
         while(slow!=null){
-            if(slow.data!=fast.data){
+            if(check.data!=slow.data){
                 return false;
             }
             slow=slow.next;
-            fast=fast.next;
+            check=check.next;
         }
         return true;
     }    
