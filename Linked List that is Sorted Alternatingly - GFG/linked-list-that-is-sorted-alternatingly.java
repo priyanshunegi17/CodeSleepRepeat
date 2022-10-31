@@ -62,25 +62,61 @@ class Node {
 */
 class Solution {
     
-   public Node sort(Node head){
-        Node check = head;
-        Node idx=head;
-        while(idx!=null){
-            Node min=idx;
-            Node curr=idx;
-            while(curr!=null){
-                if(curr.data<min.data){
-                    min=curr;
-                }
-                curr=curr.next;       
-            }
-            int temp = min.data;
-            min.data=idx.data;
-            idx.data=temp;
-            idx=idx.next;   
+    Node mergeTwoSortedLists(Node head1, Node head2){
+        if(head1==null){
+            return head2;
         }
-        return head;
-   }
-
-
+        else if(head2==null){
+            return head1;
+        }
+        if(head1.data<=head2.data){
+            head1.next=mergeTwoSortedLists(head1.next,head2);
+            return head1;
+        }
+        else{
+            head2.next=mergeTwoSortedLists(head1,head2.next);
+            return head2;
+        }
+    }   
+    Node findMid(Node head){
+        Node fast=head;
+        Node slow=head;
+        Node prev=null;
+        while(fast!=null && fast.next!=null){
+            prev=slow;
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        prev.next=null;
+        return slow;
+    }
+    
+   public Node sort(Node head){
+       if(head==null || head.next==null){
+           return head;
+       }
+       
+        Node mid= findMid(head);
+        Node left=head;
+        Node right=mid;
+        
+        left = sort(left);
+        right= sort(right);
+        return mergeTwoSortedLists(left,right);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
