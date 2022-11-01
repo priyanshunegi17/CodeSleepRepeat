@@ -119,9 +119,10 @@ class Node
     the flattened linked list. */
 class GfG
 {
-    Node merge(Node head1,Node head2){
+    Node merge(Node head1, Node head2){
         if(head1==null) return head2;
         if(head2==null) return head1;
+        
         if(head1.data<=head2.data){
             head1.bottom=merge(head1.bottom,head2);
             return head1;
@@ -131,14 +132,15 @@ class GfG
             return head2;
         }
     }
+    
     Node flatten(Node root)
     {
-	    if(root.next==null){
-	        return root;
-	    }
-	    Node end=flatten(root.next);
-	    Node newHead=merge(root,end);
-	    return newHead;
+     if(root==null || root.next==null){
+         return root;
+     }   
+     Node end = flatten(root.next);
+     Node newHead = merge(root,end);
+     return newHead;
     }
 }
 
