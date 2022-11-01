@@ -20,10 +20,9 @@ class Solution {
         //build the deep copy...
         while(check!=null){
             Node newNode= new Node(check.val);
+            newNode.next=check.next;
             check.next=newNode;
-            newNode.next=nex;
-            check=nex;
-            if(nex!=null) nex=nex.next;
+            check=newNode.next;
         }
         
         // maintain the random pointers...
