@@ -171,37 +171,37 @@ class Node {
 class Clone {
     //Function to clone a linked list with next and random pointer.
     Node copyList(Node head) {
-        HashMap<Node,Node> map = new HashMap<>();
-        Node check=head;
-        Node newHead=new Node(0);
-        Node curr=newHead;
-        while(check!=null){
-            Node newNode= new Node(check.data);
-            map.put(check,newNode);
-            curr.next=newNode;
-            curr=curr.next;
-            check=check.next;
+        
+        Node temp=head,n=head.next;
+        while(temp!=null){
+            Node copy = new Node(temp.data);
+            temp.next=copy;
+            copy.next=n;
+            temp=n;
+            if(n!=null) n=n.next;
         }
-        check=head;
-        curr=newHead.next;
-        while(check!=null){
-            curr.arb=map.get(check.arb);
-            curr=curr.next;
-            check=check.next;
+        
+        temp=head;
+        while(temp!=null){
+            if(temp.arb!=null){
+                temp.next.arb=temp.arb.next;
+            }
+            temp=temp.next.next;
         }
-        return newHead.next;
+        
+        Node dummy=new Node(-1);
+        Node tail =dummy;
+        temp=head;
+        while(temp!=null){
+            tail.next=temp.next;
+            tail=tail.next;
+            temp.next=tail.next;
+            temp=temp.next;
+        }
+     return dummy.next;
+        
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
