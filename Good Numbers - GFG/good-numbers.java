@@ -25,30 +25,25 @@ class GFG {
 // } Driver Code Ends
 
 
-// User function Template for Java
+// https://practice.geeksforgeeks.org/problems/good-numbers4629/1
 
 class Solution {
-    boolean isGood(int n,int d){
-        int digit=n%10;
-        int sum=digit;
-        n/=10;
+    boolean isGood(int n,int sum,int d){
+        if(n==0) return true;
+        int digit = n%10;
         if(digit==d) return false;
-        while(n>0){
-            digit = n%10;
-            // System.out.println(digit+" -- "+sum);
-            if(digit<=sum){
-                return false;
-            }
-            if(digit==d) return false;
-            sum+=digit;
-            n/=10;
-        }
-        return true;
+        if(digit<=sum) return false;
+        // System.out.println(n+" , "+sum+" , "+d);
+        return isGood(n/10,sum+digit,d);
+        
     }
     ArrayList<Integer> goodNumbers(int L, int R, int D) {
         ArrayList<Integer> ans=new ArrayList<>();
+            // System.out.println(isGood(942,1,0));
         for(int i=L;i<=R;i++){
-            if(isGood(i,D)) ans.add(i);
+            if(i%10==D) continue;
+            if(isGood(i/10,i%10,D)) ans.add(i);
+            // System.out.println(isGood(i/10,i%10,D));
         }
         return ans;
     }
