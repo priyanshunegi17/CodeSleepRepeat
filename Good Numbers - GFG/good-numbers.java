@@ -31,19 +31,16 @@ class Solution {
     boolean isGood(int n,int sum,int d){
         if(n==0) return true;
         int digit = n%10;
-        if(digit==d) return false;
-        if(digit<=sum) return false;
-        // System.out.println(n+" , "+sum+" , "+d);
+        if(digit==d || digit<=sum) return false;
+        // if(digit<=sum) return false;
         return isGood(n/10,sum+digit,d);
         
     }
     ArrayList<Integer> goodNumbers(int L, int R, int D) {
         ArrayList<Integer> ans=new ArrayList<>();
-            // System.out.println(isGood(942,1,0));
         for(int i=L;i<=R;i++){
             if(i%10==D) continue;
             if(isGood(i/10,i%10,D)) ans.add(i);
-            // System.out.println(isGood(i/10,i%10,D));
         }
         return ans;
     }
