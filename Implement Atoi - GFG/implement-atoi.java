@@ -28,25 +28,30 @@ class aToi
 /*You are required to complete this method */
 class Solution
 {
-    int atoi(String str) {
-        int n=str.length();
-        String tmp  = "";
-        // for(int i=n;i>=0;i--){
-        //     tmp+=str.charAt(i);
-        // }
-        int ans=0,neg=1;
-        for(int i=0;i<n;i++){
-            if(str.charAt(i)=='-' && i==0){
-                neg=-1;
-            }
-            else if(str.charAt(i)>='0' && str.charAt(i)<='9'){
-                ans=ans*10+(str.charAt(i)-'0');
-            }
-            else{
-                return -1;
-            }
+    int helper(String s,int index,int ans){
+        if(index==s.length()) return ans;
+        if(s.charAt(index)>='0' && s.charAt(index)<='9'){
+            ans=ans*10+(s.charAt(index)-'0');
+            return helper(s,index+1,ans);
         }
-        // System.out.println(ans);
-        return ans*neg;
+        else{
+            return 0;
+        }
+    }
+    
+    int atoi(String str) {
+        int isNegative=1;
+        int ans=0;
+	    if(str.charAt(0)=='-'){
+	        isNegative=-1;
+            ans=helper(str,1,0);
+	    }
+	    else{
+            ans=helper(str,0,0);
+	    }
+	    if(ans==0){
+	        return -1;
+	    }
+	    return ans*isNegative;
     }
 }
