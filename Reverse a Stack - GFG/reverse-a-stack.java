@@ -50,13 +50,6 @@ class Solution
         if(s.empty()) return;
         int element = s.pop();
         reverse(s);
-        Stack<Integer> temp = new Stack<>();
-        while(s.empty()!=true){
-            temp.push(s.pop());
-        }
-        s.push(element);
-        while(temp.empty()!=true){
-            s.push(temp.pop());
-        }
+        s.add(0,element);
     }
 }
