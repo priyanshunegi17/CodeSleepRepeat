@@ -37,17 +37,20 @@ class Solution {
     }
     
     void helper(String s, int index, List<String> ans){
-        if(index>=s.length()){
-            ans.add(s);
-        }
+        int n = s.length();
         
-        for(int i=index;i<s.length();i++){
-            if(i>index && s.charAt(i)==s.charAt(i-1)) continue;
+        if(index>=n){
+            if(!ans.contains(s)){
+                ans.add(new String(s));
+            }
+            return;
+        }
+        for(int i=index;i<n;i++){
+            // if(i>index && s.charAt(i)==s.charAt(i-1)) continue;
             s=swap(s,i,index);
             helper(s,index+1,ans);
             s=swap(s,i,index);
         }
-        
     }
     
     public List<String> find_permutation(String S) {
