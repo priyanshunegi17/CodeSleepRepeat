@@ -13,8 +13,7 @@ class Solution {
     public int countGoodNumbers(long n) {
         long odd = n/2;
         long even = n/2+n%2;
-        return (int)((getPow(5,even)%mod)*(getPow(4,odd)%mod)%mod);
-         
+        return (int)(getPow(5,even)*getPow(4,odd)%mod);
     }
 }
 
