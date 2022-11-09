@@ -1,1 +1,1 @@
-​
+The answer is 5 * 4 * 5 * 4 ... * 5 * 4 [ * 5], and we have 4 repeated n / 2 times, and 5 repeated (n + 1) / 2 times (we have an extra 5 if n is odd).
