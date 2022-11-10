@@ -36,31 +36,18 @@ class GFG{
 //https://practice.geeksforgeeks.org/problems/generate-all-possible-parentheses/1
 
 class Solution {
-    void helper(int k, int index, String curr, List<String>ans,HashMap<Character,Integer> map){
+    void helper(int k, int index, String curr, List<String>ans,int open,int close){
         if(index>=2*k){
             ans.add(curr);
             return;
         }
-        if(map.getOrDefault('(',0)<k){
-            map.put('(',map.getOrDefault('(',0)+1);
-            helper(k,index+1,curr+'(',ans,map);
-            if(map.get('(')>1){
-                map.put('(',map.getOrDefault('(',0)-1);
-            }
-            else{
-                map.remove('(');
-            }
+        if(open<k){
+            helper(k,index+1,curr+'(',ans,open+1,close);
         }
-        if(map.getOrDefault(')',0)<map.getOrDefault('(',0)){
-            map.put(')',map.getOrDefault(')',0)+1);
-            helper(k,index+1,curr+')',ans,map);
-            if(map.get(')')>1){
-                map.put(')',map.getOrDefault(')',0)-1);
-            }
-            else{
-                map.remove(')');
-            }
+        if(close<open){
+            helper(k,index+1,curr+')',ans,open,close+1);
         }
+        
     }
     
     public List<String> AllParenthesis(int n) 
@@ -68,7 +55,7 @@ class Solution {
         List<String> ans = new ArrayList<>();
         HashMap<Character,Integer> map = new HashMap<>();
         String s = "";
-        helper(n,0,s,ans,map);
+        helper(n,0,s,ans,0,0);
         return ans;
     }
 }
