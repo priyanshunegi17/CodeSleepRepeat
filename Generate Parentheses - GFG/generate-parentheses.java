@@ -36,25 +36,6 @@ class GFG{
 //https://practice.geeksforgeeks.org/problems/generate-all-possible-parentheses/1
 
 class Solution {
-    public boolean isValid(String s) {
-        Stack<Character> st = new Stack<>();
-        for(char ch:s.toCharArray()){
-            if(ch=='('){
-                st.push(')');
-            }
-            else if(ch=='{'){
-                st.push('}');
-            }
-            else if(ch=='['){
-                st.push(']');
-            }
-            else if(st.isEmpty() || st.pop()!=ch){
-                return false;
-            }
-        }
-        return st.empty();
-    }
-    
     void helper(int k, int index, String curr, List<String>ans,HashMap<Character,Integer> map){
         if(index>=2*k){
             ans.add(curr);
