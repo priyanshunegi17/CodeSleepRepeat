@@ -72,13 +72,12 @@ class Solution
         curr.add(arr.get(index));
         helper(arr,index,currSum+arr.get(index),sum,curr,ans);
         curr.remove(curr.size()-1);
-        int i=index;
-        while(i<arr.size()-1 && arr.get(i)==arr.get(i+1)){
-            i++;
-            // index++;
+    // skip the same 
+        while(index<arr.size()-1 && arr.get(index)==arr.get(index+1)){
+            // i++;
+            index++;
         }
-        // helper(arr,index+1,currSum,sum,curr,ans);
-        helper(arr,i+1,currSum,sum,curr,ans);
+        helper(arr,index+1,currSum,sum,curr,ans);
     }
     
     static ArrayList<ArrayList<Integer>> combinationSum(ArrayList<Integer> A, int B)
