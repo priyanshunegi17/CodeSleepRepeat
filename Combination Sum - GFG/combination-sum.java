@@ -56,11 +56,10 @@ class Driverclass
 // } Driver Code Ends
 
 
-//User function template for JAVA
+//https://practice.geeksforgeeks.org/problems/combination-sum-1587115620/1
 
 class Solution
 {
-    
     static void helper(ArrayList<Integer> arr,int index,int currSum, int sum,ArrayList<Integer> curr,ArrayList<ArrayList<Integer>> ans){
         if(currSum==sum){
             ans.add(new ArrayList<>(curr));
@@ -69,10 +68,12 @@ class Solution
         if(currSum>sum) return;
         if(index>=arr.size()) return;
         
+        // pick
         curr.add(arr.get(index));
         helper(arr,index,currSum+arr.get(index),sum,curr,ans);
         curr.remove(curr.size()-1);
-    // skip the same 
+        // not pick
+    // skip the same elements (only if we are skipping the current element...)
         while(index<arr.size()-1 && arr.get(index)==arr.get(index+1)){
             // i++;
             index++;
