@@ -8,21 +8,20 @@ class Solution {
         return -1;
     }
     int yoyo=0;
-    void helper(List<String> arr, int index, String curr, String ans){
+    void helper(List<String> arr, int index, String curr){
         int n=curr.length();
         int check=getUniqueLength(curr);
         if(check==-1) return;
         yoyo=Math.max(check,yoyo);
         if(index>=arr.size()) return;
         
-        helper(arr,index+1,curr+arr.get(index),ans);
-        helper(arr,index+1,curr,ans);
+        helper(arr,index+1,curr+arr.get(index));
+        helper(arr,index+1,curr);
         
     }
     
     public int maxLength(List<String> arr) {
-        String ans="";
-        helper(arr,0,"",ans);
+        helper(arr,0,"");
         return yoyo;
     }
 }
