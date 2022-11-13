@@ -10,7 +10,9 @@ class Solution {
     int yoyo=0;
     void helper(List<String> arr, int index, String curr, String ans){
         int n=curr.length();
-        yoyo=Math.max(getUniqueLength(curr),yoyo);
+        int check=getUniqueLength(curr);
+        if(check==-1) return;
+        yoyo=Math.max(check,yoyo);
         if(index>=arr.size()) return;
         
         helper(arr,index+1,curr+arr.get(index),ans);
