@@ -1,27 +1,47 @@
+// https://leetcode.com/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
 class Solution {
-    int getUniqueLength(String s){
-        Set<Character> set = new HashSet<>();
-        for(char ch:s.toCharArray()) set.add(ch);
-        if(s.length()==set.size()){
-            return set.size();
+    boolean checkUnique(String s,int []check){
+        // self check
+        int arr[] = new int[26];
+        for(char ch:s.toCharArray()){
+            if(arr[ch-'a']==1) return false;
+            arr[ch-'a']=1;
         }
-        return -1;
-    }
-    int yoyo=0;
-    void helper(List<String> arr, int index, String curr){
-        int n=curr.length();
-        int check=getUniqueLength(curr);
-        if(check==-1) return;
-        yoyo=Math.max(check,yoyo);
-        if(index>=arr.size()) return;
         
-        helper(arr,index+1,curr+arr.get(index));
-        helper(arr,index+1,curr);
+        for(char ch:s.toCharArray()){
+            if(check[ch-'a']==1) return false;
+        }
+        return true;
+    }
+    
+    int helper(List<String> arr, int index,int len,int check[]){
+        if(index>=arr.size()){
+            return len;
+        }
+        
+        
+        String s = arr.get(index);
+        if(checkUnique(arr.get(index),check)){
+            //pick
+             for(char ch:s.toCharArray()){
+                check[ch-'a']=1;
+            }
+            int op1 = helper(arr,index+1,len+s.length(),check);
+            for(char ch:s.toCharArray()){
+               check[ch-'a']=0;
+            }
+            int op2 = helper(arr,index+1,len,check);
+            return Math.max(op1,op2);
+        }
+        else{
+            return helper(arr,index+1,len,check);
+        }
         
     }
     
     public int maxLength(List<String> arr) {
-        helper(arr,0,"");
-        return yoyo;
+        int check[] = new int[26];
+        return helper(arr,0,0,check);
+        // return yoyo;
     }
 }
