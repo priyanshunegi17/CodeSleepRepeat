@@ -35,26 +35,24 @@ class Rat {
 // m is the given matrix and n is the order of matrix
 class Solution {
     
-    static void helper(int[][] m,int i,int j,int n,String curr,ArrayList<String> ans){
-        if(i<0 || j<0 || i==n || j==n || m[i][j]==0) return;
-        if(m[i][j]==-1) return;
+    static void helper(int[][] arr,int i,int j,int n,String curr,ArrayList<String> ans){
+        if(i<0 || j<0 || i==n || j==n || arr[i][j]==0 || arr[i][j]==-1) return;
         if(i==n-1 && j==n-1){
             ans.add(new String(curr));
             return;
         }
-        int visited = m[i][j];
-        m[i][j]=-1;
-        helper(m,i,j-1,n,curr+'L',ans);
-        helper(m,i,j+1,n,curr+'R',ans);
-        helper(m,i-1,j,n,curr+'U',ans);
-        helper(m,i+1,j,n,curr+'D',ans);
-        m[i][j]=visited;
+        int visited = arr[i][j];
+        arr[i][j]=-1;
+        helper(arr,i,j-1,n,curr+'L',ans);
+        helper(arr,i,j+1,n,curr+'R',ans);
+        helper(arr,i-1,j,n,curr+'U',ans);
+        helper(arr,i+1,j,n,curr+'D',ans);
+        arr[i][j]=visited;
     }
     
     public static ArrayList<String> findPath(int[][] m, int n) {
         ArrayList<String> ans = new ArrayList<>();
         helper(m,0,0,n,"",ans);
-        // System.out.println(ans);
         return ans;
     }
 }
