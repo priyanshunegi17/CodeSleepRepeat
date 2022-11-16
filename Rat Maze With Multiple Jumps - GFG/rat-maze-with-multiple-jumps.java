@@ -31,22 +31,27 @@ class GFG
 
 // } Driver Code Ends
 
-
+// https://practice.geeksforgeeks.org/problems/rat-maze-with-multiple-jumps3852/1
 class Solution
 {
     boolean helper(int[][] arr, int i,int j, int n, int[][] ans){
+        // reached the end... successfully....
         if(i==n-1 && j==n-1){
             ans[i][j]=1;
             return true;
         }
         
+        // if rat goes beyond boundries or the path is blocked...
         if(i>=n || j>=n || arr[i][j]==0) return false;
         
+        // mark the current cell as 1.. (possible path)
         ans[i][j]=1;
         for(int steps=1;steps<=arr[i][j];steps++){
             if(helper(arr,i,j+steps,n,ans)) return true;
             if(helper(arr,i+steps,j,n,ans)) return true;
         }
+        // if the above conditions don't return true, then this path is wrong..
+        // restore the changes... and return false....
         ans[i][j]=0;
         return false;
     }
