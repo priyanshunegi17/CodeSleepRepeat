@@ -1,11 +1,11 @@
 class Solution {
     
-    boolean inbound(int i,int j,int n){
+    boolean inbound(int i,int j, int n){
         if(i<0 || j<0 || i>=n || j>=n) return false;
         return true;
     }
     
-    boolean checkValidPosition(int r, int c, int n,List<String> curr){
+    boolean isValid(int r,int c, int n,List<String>curr){
         
         for(int i=0;i<n;i++){
             if(curr.get(r).charAt(i)=='Q' || curr.get(i).charAt(c)=='Q') return false;
@@ -20,14 +20,15 @@ class Solution {
         return true;
     }
     
-    void helper(int row, int n, List<String> curr,List<List<String>> ans){
-        if(row>=n){
+    void helper(int row, int n, List<String>curr, List<List<String>>ans){
+        
+        if(row==n){
             ans.add(new ArrayList<String>(curr));
             return;
         }
         
-        for(int i=0;i<n;i++){
-            if(checkValidPosition(row,i,n,curr)){
+        for(int i=0;i<n;i++){            
+            if(isValid(row,i,n,curr)){
                 StringBuilder sb = new StringBuilder(curr.get(row));
                 sb.setCharAt(i,'Q');
                 curr.set(row,sb.toString());
@@ -39,7 +40,6 @@ class Solution {
         
     }
     
-    
     public List<List<String>> solveNQueens(int n) {
         List<List<String>> ans = new ArrayList<>();
         List<String> curr= new ArrayList<>();
@@ -50,13 +50,8 @@ class Solution {
             }
             curr.add(s);
         }
+        
         helper(0,n,curr,ans);
         return ans;
     }
 }
-
-
-
-
-
-
