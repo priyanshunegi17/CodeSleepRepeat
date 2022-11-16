@@ -34,14 +34,14 @@ class GFG
 
 class Solution
 {
-    boolean helper(int[][]arr,int i,int j, int n,int[][] ans){
+    boolean helper(int[][] arr, int i,int j, int n, int[][] ans){
         if(i==n-1 && j==n-1){
             ans[i][j]=1;
             return true;
         }
-        if(i>=n|| j>=n || arr[i][j]==0){
-            return false;
-        }
+        
+        if(i>=n || j>=n || arr[i][j]==0) return false;
+        
         ans[i][j]=1;
         for(int steps=1;steps<=arr[i][j];steps++){
             if(helper(arr,i,j+steps,n,ans)) return true;
@@ -49,15 +49,14 @@ class Solution
         }
         ans[i][j]=0;
         return false;
-        
     }
+    
     public int[][] ShortestDistance(int[][] matrix)
     {
         int n = matrix.length;
         int[][] ans = new int[n][n];
+        
         if(!helper(matrix,0,0,n,ans)) return new int[][]{{-1}};
-        // helper(matrix,0,0,n,ans);
-        // System.out.println(ans);
         return ans;
     }
 }
