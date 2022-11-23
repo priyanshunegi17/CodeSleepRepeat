@@ -1,37 +1,24 @@
 class Solution {
-    boolean isPresent(String curr, HashSet<String> dict){
-        if(dict.contains(curr)) return true;
-        return false;
-    }
     
-    int helper(String s,int index, HashSet<String> dict,HashMap<Integer,Integer>map){
-        int n = s.length();
+    int helper(String s, int index,int n, HashSet<String> dict,HashMap<Integer,Integer>dp){
+        System.out.println(index);
         if(index==n) return 1;
-        if(map.containsKey(index)){
-            return map.get(index);
-        }
-        String temp =  "";
+        if(dp.containsKey(index)) return dp.get(index);
+        String temp="";
         for(int i=index;i<n;i++){
             temp+=s.charAt(i);
-            if(isPresent(temp,dict)){
-                if(helper(s,i+1,dict,map)>0){
-                    map.put(index,1);
-                    return 1;
-                }
+            if(dict.contains(temp) && helper(s,i+1,n,dict,dp)>0){
+                dp.put(index,1);
+                return 1;
             }
         }
-        map.put(index,0);
+        dp.put(index,0);
         return 0;
-        
     }
     
     public boolean wordBreak(String s, List<String> wordDict) {
-        HashSet<String> set = new HashSet<>();
-        for(String str:wordDict){
-            set.add(str);
-        }
-        HashMap<Integer,Integer> map = new HashMap<>();
-        int ans = helper(s,0,set,map);
-        return ans>0;
+        HashSet<String> dict = new HashSet<>(wordDict);
+        HashMap<Integer,Integer>dp = new HashMap<>();
+         return helper(s,0,s.length(),dict,dp)>0;
     }
 }
