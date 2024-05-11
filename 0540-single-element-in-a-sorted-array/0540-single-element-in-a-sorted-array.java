@@ -9,9 +9,7 @@ class Solution {
             if(nums[i]!=nums[i+1]){
                 return nums[i];
             }
-            else{
-                i++;
-            }
+            i++;
         }
         return nums[n-1];
         
