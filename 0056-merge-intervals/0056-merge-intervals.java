@@ -3,30 +3,29 @@ class Solution {
         
         Arrays.sort(intervals,(a,b)-> Integer.compare(a[0],b[0]));
         
-        int rows=intervals.length;
-        int cols=intervals[0].length;
+        int rows= intervals.length;
+        int cols = intervals[0].length;
         
-        List<int[]> curr = new ArrayList<>();        
+        List<int[]> prev = new ArrayList<>();
+        
         for(int i=0;i<rows;i++){
-            if(curr.size()==0){
-                curr.add(intervals[i]);
+            if(i==0){
+                prev.add(intervals[i]);
             }
             else{
-                int[] arr = curr.get(curr.size()-1);
+                int[] arr = prev.get(prev.size()-1);
                 int prevEnd = arr[1];
                 
-                // overlapping
-                if(intervals[i][0]<=prevEnd){
+                if(prevEnd>=intervals[i][0]){
                     arr[1]=Math.max(prevEnd,intervals[i][1]);
-                    
                 }
-                // not overlapping
                 else{
-                    curr.add(intervals[i]);
+                    prev.add(intervals[i]);
                 }
                 
             }
         }
-        return curr.toArray(new int[0][]);
+        return prev.toArray(new int[0][]);
+        
     }
 }
