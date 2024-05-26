@@ -12,7 +12,7 @@ class Solution {
                 maxx=Math.max(curr,maxx);
             }
             else if(nums[i+1]-nums[i]==0){
-                
+                continue;
             }
             else{
                 curr=1;
